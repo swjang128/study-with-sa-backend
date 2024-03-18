@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: study
+  datasource:
+    url: ${MYSQL_SERVER_URL}
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+    driver-class-name: ${MYSQL_DRIVER_CLASS_NAME}
+    platform: ${MYSQL_PLATFORM}
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          auth: true
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+server:
+  port: ${SERVER_PORT}
+  error:
+    path: /error
+  servlet:
+    session:
+      timeout: 1440m
+# Logback Properties
+logging:
+  level:
+    root: ${LOG_LEVEL}
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: trace
+  file:
+    path: ./logs/${PROFILE}
