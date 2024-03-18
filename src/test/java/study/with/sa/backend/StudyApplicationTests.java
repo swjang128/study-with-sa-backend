@@ -1,4 +1,4 @@
-package com.example.study;
+package study.with.sa.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
