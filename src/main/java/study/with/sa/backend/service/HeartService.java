@@ -1,7 +1,7 @@
 package study.with.sa.backend.service;
 
-import study.with.sa.backend.config.RestApiResponse;
+import study.with.sa.backend.config.ApiResponse;
 
 public interface HeartService {
-    RestApiResponse<Object> myLove();
+    ApiResponse<Object> myLove();
 }

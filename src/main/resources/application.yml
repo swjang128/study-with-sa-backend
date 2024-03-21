@@ -21,6 +21,7 @@ spring:
   jpa:
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
     show-sql: true
     hibernate:
@@ -35,7 +36,7 @@ server:
   servlet:
     session:
       timeout: 1440m
-# Logback Properties
+# Logger Properties
 logging:
   level:
     root: ${LOG_LEVEL}

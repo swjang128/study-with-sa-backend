@@ -30,60 +30,62 @@ public class ExceptionResponseHandler extends ResponseEntityExceptionHandler {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Description("Bad request exception abort")
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e,
+    public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e,
                                                                   HttpHeaders headers,
                                                                   HttpStatus status,
                                                                   WebRequest request) {
         logger.error("handle MethodArgumentNotValid: {}", e.getMessage());
-        RestApiResponse<Object> restApiResponse = RestApiResponse.error(HttpStatus.BAD_REQUEST, e.getMessage());
+        ApiResponse<Object> restApiResponse = ApiResponse.error(HttpStatus.BAD_REQUEST, e.getMessage());
         return new ResponseEntity<>(restApiResponse, HttpStatus.BAD_REQUEST);
     }
 
     @Description("Http message not readable exception abort")
-    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException e,
+    public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException e,
                                                                   HttpHeaders headers,
                                                                   HttpStatus status,
                                                                   WebRequest request) {
         logger.error("handle HttpMessageNotReadable: {}", e.getMessage());
-        RestApiResponse<Object> restApiResponse = RestApiResponse.error(HttpStatus.BAD_REQUEST, e.getMessage());
+        ApiResponse<Object> restApiResponse = ApiResponse.error(HttpStatus.BAD_REQUEST, e.getMessage());
         return new ResponseEntity<>(restApiResponse, HttpStatus.BAD_REQUEST);
     }
 
     @Description("Request bad request exception abort")
     @ExceptionHandler({HttpClientErrorException.BadRequest.class, HttpClientErrorException.NotFound.class})
-    public RestApiResponse<Object> handleBadRequestException(Exception e) {
+    public ApiResponse<Object> handleBadRequestException(Exception e) {
         logger.error("handle BadRequestException: {}", e.getMessage());
-        return RestApiResponse.error(HttpStatus.BAD_REQUEST, e.getMessage());
+        return ApiResponse.error(HttpStatus.BAD_REQUEST, e.getMessage());
     }
 
     @Description("Method not allowed exception abort")
-    protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException e,
+    public ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException e,
                                                                          HttpHeaders headers,
                                                                          HttpStatus status,
                                                                          WebRequest request) {
         logger.error("handle HttpRequestMethodNotSupported: {}", e.getMessage());
-        RestApiResponse<Object> restApiResponse = RestApiResponse.error(HttpStatus.FORBIDDEN, e.getMessage());
+        ApiResponse<Object> restApiResponse = ApiResponse.error(HttpStatus.FORBIDDEN, e.getMessage());
         return new ResponseEntity<>(restApiResponse, HttpStatus.METHOD_NOT_ALLOWED);
     }
 
     @Description("Exception abort")
-    @ExceptionHandler({RuntimeException.class, InterruptedException.class, InternalError.class, JsonProcessingException.class, JSONException.class, IOException.class, TimeoutException.class, DuplicateRequestException.class})
-    public RestApiResponse<Object> handleException(Exception e) {
+    @ExceptionHandler({RuntimeException.class, InterruptedException.class, InternalError.class,
+            JsonProcessingException.class, JSONException.class, IOException.class,
+            TimeoutException.class, DuplicateRequestException.class})
+    public ApiResponse<Object> handleException(Exception e) {
         logger.error("handle Exception: {}", e.getMessage());
-        return RestApiResponse.error(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+        return ApiResponse.error(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
     }
 
     @Description("Request unauthorized exception abort")
     @ExceptionHandler({HttpClientErrorException.Unauthorized.class})
-    public RestApiResponse<Object> handleUnauthorizedException(Exception e) {
+    public ApiResponse<Object> handleUnauthorizedException(Exception e) {
         logger.error("handle UnauthorizedException: {}", e.getMessage());
-        return RestApiResponse.error(HttpStatus.UNAUTHORIZED, e.getMessage());
+        return ApiResponse.error(HttpStatus.UNAUTHORIZED, e.getMessage());
     }
 
     @Description("Request forbidden exception abort")
     @ExceptionHandler({HttpClientErrorException.Forbidden.class, HttpClientErrorException.NotAcceptable.class})
-    public RestApiResponse<Object> handleForbiddenException(Exception e) {
+    public ApiResponse<Object> handleForbiddenException(Exception e) {
         logger.error("handle ForbiddenException: {}", e.getMessage());
-        return RestApiResponse.error(HttpStatus.FORBIDDEN, e.getMessage());
+        return ApiResponse.error(HttpStatus.FORBIDDEN, e.getMessage());
     }
 }
