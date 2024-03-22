@@ -23,7 +23,7 @@ public class Board {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @Column(nullable = false, columnDefinition = "0")
+    @Column(nullable = false, columnDefinition = "INT DEFAULT 0")
     private int views;
 
     @Temporal(TemporalType.TIMESTAMP)

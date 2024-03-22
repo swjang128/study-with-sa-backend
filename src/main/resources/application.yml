@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: ${SPRING_PROFILE}
   application:
     name: study-backend
   datasource:
@@ -47,4 +49,4 @@ logging:
             sql:
               BasicBinder: trace
   file:
-    path: ./logs/${PROFILE}
+    path: ./logs/${SPRING_PROFILE}
