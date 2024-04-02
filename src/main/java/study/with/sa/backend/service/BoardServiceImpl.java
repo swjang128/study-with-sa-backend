@@ -3,13 +3,10 @@ package study.with.sa.backend.service;
 import jdk.jfr.Description;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import study.with.sa.backend.config.ApiResponse;
 import study.with.sa.backend.dto.BoardCreateDto;
-import study.with.sa.backend.entity.Board;
 import study.with.sa.backend.repository.BoardRepository;
-
-import java.util.Collections;
 
 @Service
 @Slf4j
@@ -18,29 +15,31 @@ public class BoardServiceImpl implements BoardService {
     private BoardRepository boardRepository;
 
     @Override
-    public ApiResponse<Object> create(BoardCreateDto boardCreateDto) {
-        // 파라미터를 entity로 변환하고 테이블에 save
-        return ApiResponse.success(boardRepository.save(boardCreateDto.entity()));
+    public ResponseEntity<Object> create(BoardCreateDto boardCreateDto) {
+        return ResponseEntity.ok(boardRepository.save(boardCreateDto.entity()));
     }
 
     @Override
     @Description("게시물 전체 조회")
-    public ApiResponse<Object> findAll() {
-        return ApiResponse.success(boardRepository.findAll());
+    public ResponseEntity<Object> findAll() {
+        return ResponseEntity.ok(boardRepository.findAll());
     }
 
     @Override
-    public ApiResponse<Object> findOne(Long id) {
-        return ApiResponse.success(boardRepository.findById(id));
+    @Description("특정 게시물 조회")
+    public ResponseEntity<Object> findOne(Long id) {
+        return ResponseEntity.ok(boardRepository.findById(id));
     }
 
     @Override
-    public ApiResponse<Object> update() {
+    @Description("특정 게시물 수정")
+    public ResponseEntity<Object> update() {
         return null;
     }
 
     @Override
-    public ApiResponse<Object> delete() {
+    @Description("특정 게시물 삭제")
+    public ResponseEntity<Object> delete() {
         return null;
     }
 }

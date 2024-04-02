@@ -1,12 +1,12 @@
 package study.with.sa.backend.service;
 
-import study.with.sa.backend.config.ApiResponse;
+import org.springframework.http.ResponseEntity;
 import study.with.sa.backend.dto.BoardCreateDto;
 
 public interface BoardService {
-    ApiResponse<Object> create(BoardCreateDto boardCreateDto);
-    ApiResponse<Object> findAll();
-    ApiResponse<Object> findOne(Long id);
-    ApiResponse<Object> update();
-    ApiResponse<Object> delete();
+    ResponseEntity<Object> create(BoardCreateDto boardCreateDto);
+    ResponseEntity<Object> findAll();
+    ResponseEntity<Object> findOne(Long id);
+    ResponseEntity<Object> update();
+    ResponseEntity<Object> delete();
 }

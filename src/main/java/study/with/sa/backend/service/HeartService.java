@@ -1,7 +1,7 @@
 package study.with.sa.backend.service;
 
-import study.with.sa.backend.config.ApiResponse;
+import org.springframework.http.ResponseEntity;
 
 public interface HeartService {
-    ApiResponse<Object> myLove();
+    ResponseEntity<Object> myLove();
 }

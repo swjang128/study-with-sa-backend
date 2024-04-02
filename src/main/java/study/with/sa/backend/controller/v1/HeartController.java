@@ -1,7 +1,7 @@
-package study.with.sa.backend.controller;
+package study.with.sa.backend.controller.v1;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import study.with.sa.backend.config.ApiResponse;
 import study.with.sa.backend.service.HeartService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +14,8 @@ public class HeartController {
     private final HeartService heartService;
 
     @GetMapping("/myLove")
-    public ApiResponse<Object> myLove() {
-        return heartService.myLove();
+    public ResponseEntity<Object> myLove() {
+        return ResponseEntity.ok(heartService.myLove());
     }
 
 }
