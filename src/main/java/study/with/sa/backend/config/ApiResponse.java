@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-@Getter
+@Getter // 응답 결과를 JSON 객체로 만들어주기 위해서 필요!
 @Builder
 public class ApiResponse {
     private int status;

@@ -18,6 +18,7 @@ public class BoardRequestDto {
     private String content;
     private int views;
 
+    @Description("게시물 등록에 필요한 객체")
     public Board create() {
         return Board.builder()
                 .title(title)
@@ -26,7 +27,7 @@ public class BoardRequestDto {
                 .build();
     }
 
-    @Description("게시물 전체 수정")
+    @Description("게시물 수정에 필요한 객체")
     public Board update() {
         return Board.builder()
                 .id(id)
