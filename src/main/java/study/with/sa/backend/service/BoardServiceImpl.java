@@ -49,11 +49,13 @@ public class BoardServiceImpl implements BoardService {
     @Description("조회수 1 증가")
     public ApiResponse addViews(Long id) {
         return boardRepository.findById(id)
+                // 게시물이 존재할 경우 조회수 1 증가하고 Update
                 .map(board -> {
                     board.incrementViews();
                     boardRepository.save(board);
                     return ApiResponse.success(board);
                 })
+                // 게시물이 존재하지 않을 경우 게시물이 없다고 리턴
                 .orElseGet(() -> ApiResponse.error(HttpStatus.NOT_FOUND, "게시물을 찾을 수 없습니다."));
     }
 }
