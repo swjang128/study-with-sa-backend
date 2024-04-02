@@ -3,9 +3,11 @@ package study.with.sa.backend.service;
 import jdk.jfr.Description;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.annotation.Version;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import study.with.sa.backend.config.ApiResponse;
+import study.with.sa.backend.dto.BoardListRequestDto;
 import study.with.sa.backend.dto.BoardRequestDto;
 import study.with.sa.backend.repository.BoardRepository;
 
@@ -57,5 +59,12 @@ public class BoardServiceImpl implements BoardService {
                 })
                 // 게시물이 존재하지 않을 경우 게시물이 없다고 리턴
                 .orElseGet(() -> ApiResponse.error(HttpStatus.NOT_FOUND, "게시물을 찾을 수 없습니다."));
+    }
+
+    @Override
+    @Description("(v2) 조건에 맞는 게시판 목록 조회")
+    public ApiResponse boardList(BoardListRequestDto boardListRequestDto) {
+        // TODO: 조건에 맞게 게시판 목록을 조회하도록 추가할 것
+        return ApiResponse.success(boardRepository.findAll());
     }
 }

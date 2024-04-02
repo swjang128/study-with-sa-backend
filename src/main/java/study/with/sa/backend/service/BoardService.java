@@ -1,6 +1,7 @@
 package study.with.sa.backend.service;
 
 import study.with.sa.backend.config.ApiResponse;
+import study.with.sa.backend.dto.BoardListRequestDto;
 import study.with.sa.backend.dto.BoardRequestDto;
 
 public interface BoardService {
@@ -10,4 +11,5 @@ public interface BoardService {
     ApiResponse update(BoardRequestDto boardRequestDto);
     ApiResponse delete(Long id);
     ApiResponse addViews(Long id);
+    ApiResponse boardList(BoardListRequestDto boardListRequestDto);
 }
