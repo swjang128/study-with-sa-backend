@@ -39,3 +39,4 @@ out/
 ### Logs ###
 /logs
 logs/local/spring.log
+/src/main/java/study/with/sa/backend/codingtest/
